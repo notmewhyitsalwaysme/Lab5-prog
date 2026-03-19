@@ -11,6 +11,6 @@ class ExitCommand : Command {
 
     override fun execute(args: List<String>) {
         println("Завершение работы.")
-        exitProcess(0)
+        exitProcess(0) //nizya
     }
 }

@@ -1,0 +1,2 @@
+2026-03-19 12:32:01.504 [main] INFO  collection.CollectionManager - [COMMANDS] {GET_INFO} Получение информации о коллекции
+2026-03-19 12:32:20.582 [main] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент a61d60d6-289c-49c5-946d-11872ab9d910

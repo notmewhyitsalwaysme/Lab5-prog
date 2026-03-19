@@ -31,8 +31,8 @@ class CommandInvoker {
      */
     fun execute(input: String) {
         val parts = input.trim().split(" ")
-        val name  = parts[0].lowercase()
-        val args  = parts.drop(1)
+        val name = parts[0].lowercase().trim()
+        val args = parts.drop(1)
 
         val command = commands[name]
         if (command == null) {
@@ -62,4 +62,6 @@ class CommandInvoker {
         if (history.size >= 12) history.removeFirst()
         history.addLast(name)
     }
+
+    fun getCommandNames(): List<String> = commands.keys.toList()
 }

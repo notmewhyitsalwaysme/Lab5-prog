@@ -14,19 +14,17 @@ import runner.CommandInvoker
  */
 fun main(args: Array<String>) {
     // Проверяем аргументы
-    if (args.isEmpty()) {
-        System.err.println("Ошибка: укажите путь к файлу коллекции.")
-        System.err.println("Использование: java -jar lab5.jar <file.csv>")
-        return
-    }
+    var filePath = "data.csv"
 
-    val filePath = args[0]
+    if (args.isNotEmpty()) {
+        filePath = args[0]
+    }
 
     // Включаем Nightcall
     val fileManager = FileManager(filePath)
     val manager = CollectionManager()
-    val inputManager : InputManager = ConsoleInputManager()
     val invoker = CommandInvoker()
+    val inputManager = ConsoleInputManager()
 
     // Загружаем данные из файла
     val loaded = fileManager.read()
@@ -50,15 +48,17 @@ fun main(args: Array<String>) {
  * @param invoker инвокер команд
  */
 fun runRepl(inputManager: InputManager, invoker: CommandInvoker) {
-    while (true) {
-        if (inputManager.isInteractive) print("\n ☭ ") // genius idea™
+    var isRunning: Boolean = true
+    while (isRunning) {
+
 
         val line = inputManager.readLine()
 
         // EOF — завершаем без сохранения
         if (line == null) {
             println("\nНу ладно.")
-            break
+            isRunning = false
+            continue
         }
 
         if (line.isBlank()) continue
@@ -92,7 +92,7 @@ fun registerCommands(
         RemoveByIdCommand(manager),
         ClearCommand(manager),
         SaveCommand(manager, fileManager),
-        ExecuteScriptCommand(invoker, activeScripts),
+        ExecuteScriptCommand(invoker),
         ExitCommand(),
         AddIfMaxCommand(manager, inputManager),
         AddIfMinCommand(manager, inputManager),

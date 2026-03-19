@@ -1,6 +1,6 @@
 package collection
 
-import io.github.oshai.kotlinlogging.KotlinLogging
+import mu.KotlinLogging
 
 import models.HumanBeing
 import java.time.LocalDate
@@ -27,7 +27,10 @@ class CollectionManager {
      * @param humanBeing элемент для добавления
      * @return true - если элемент был добавлен, false - если уже существует
      */
-    fun add(humanBeing: HumanBeing): Boolean = collection.add(humanBeing)
+    fun add(humanBeing: HumanBeing): Boolean {
+        logger.info { "[COMMANDS] {ADD} Создан элемент ${humanBeing.id}" }
+        return collection.add(humanBeing)
+    }
 
     /**
      * Обновляет элемент с указанным [id].

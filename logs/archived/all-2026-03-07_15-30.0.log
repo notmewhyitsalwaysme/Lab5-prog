@@ -1,0 +1,2 @@
+2026-03-07 15:30:11.520 [main] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент fa80e6c1-3c21-4338-bf8a-947aed2ef1e8
+2026-03-07 15:30:16.498 [main] INFO  collection.CollectionManager - [COMMANDS] {GET_ALL} Возвращена коллекция

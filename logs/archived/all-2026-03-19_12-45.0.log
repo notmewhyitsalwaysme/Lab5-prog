@@ -1,0 +1,3 @@
+2026-03-19 12:45:12.830 [main] INFO  collection.CollectionManager - [COMMANDS] {LOAD_FROM_FILE} Загрузка коллекции из файла
+2026-03-19 12:45:20.553 [main] INFO  collection.CollectionManager - [COMMANDS] {LOAD_FROM_FILE} Загрузка коллекции из файла
+2026-03-19 12:45:25.798 [main] INFO  collection.CollectionManager - [COMMANDS] {IS_EMPTY} Проверка наличия элементов в коллекции
