@@ -60,6 +60,7 @@ class CommandQueue {
 
         visitedScripts.add(filePath)
 
+        // Лениво читаю файл, пока Сканер не вернет null, т.е. файл закончится
         Scanner(file, Charsets.UTF_8).use { scanner ->
             generateSequence { if (scanner.hasNextLine()) scanner.nextLine() else null }
                 .map { it.trim() }

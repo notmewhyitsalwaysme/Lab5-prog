@@ -48,23 +48,18 @@ fun main(args: Array<String>) {
  * @param invoker инвокер команд
  */
 fun runRepl(inputManager: InputManager, invoker: CommandInvoker) {
-    var isRunning: Boolean = true
+    var isRunning = true
+
+    // exitProcess мне нравился больше
+    invoker.register(ExitCommand { isRunning = false })
+
     while (isRunning) {
-
-
-        val line = inputManager.readLine()
-
-        // EOF — завершаем без сохранения
-        if (line == null) {
-            println("\nНу ладно.")
-            isRunning = false
-            continue
-        }
-
+        val line = inputManager.readLine() ?: break
         if (line.isBlank()) continue
-
         invoker.execute(line)
     }
+
+    println("\nНу ладно.")
 }
 
 /**
@@ -93,7 +88,6 @@ fun registerCommands(
         ClearCommand(manager),
         SaveCommand(manager, fileManager),
         ExecuteScriptCommand(invoker),
-        ExitCommand(),
         AddIfMaxCommand(manager, inputManager),
         AddIfMinCommand(manager, inputManager),
         HistoryCommand(invoker),

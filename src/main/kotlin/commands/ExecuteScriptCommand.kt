@@ -28,7 +28,6 @@ class ExecuteScriptCommand(private val invoker: CommandInvoker) : Command {
         println("Чтение скрипта '$filePath'...")
         val queue = CommandQueue()
         queue.loadFromScript(filePath)
-        println("Команды в очереди: ${queue.peek()}") // временно
 
         if (queue.isEmpty()) {
             println("Текст Скриптонита пустой или не найден.")

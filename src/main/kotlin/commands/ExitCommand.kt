@@ -1,16 +1,14 @@
 package commands
 
-import kotlin.system.exitProcess
-
 /**
- * Завершает программу без сохранения.
+ * Завершает программу без сохранения. Теперь это Callback
  */
-class ExitCommand : Command {
+class ExitCommand(private val onExit: () -> Unit) : Command {
     override val name = "exit"
-    override val description = "завершить программу (без сохранения)"
+    override val description = "завершить программу"
 
     override fun execute(args: List<String>) {
-        println("Завершение работы.")
-        exitProcess(0) //nizya
+        println("До свидания!")
+        onExit()
     }
 }
