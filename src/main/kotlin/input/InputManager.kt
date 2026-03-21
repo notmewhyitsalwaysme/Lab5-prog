@@ -14,6 +14,16 @@ interface InputManager {
     fun readLine(): String?
 
     /**
+     * Выводит сообщение в консоль.
+     */
+    fun print(text: String)
+
+    /**
+     * Выводит ошибку в консоль.
+     */
+    fun printErrConsole(text: String)
+
+    /**
      * Возвращает true если источник — интерактивная консоль.
      * Используется для управления выводом приглашений (prompt).
      */

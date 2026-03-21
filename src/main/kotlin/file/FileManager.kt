@@ -11,6 +11,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeParseException
 import java.util.Scanner
 import java.util.UUID
+import input.IOManager
 
 /**
  * Менеджер файлового хранилища коллекции.
@@ -33,6 +34,8 @@ class FileManager(private val filePath: String) {
                     "hasToothpick,impactSpeed,soundtrackName,minutesOfWaiting,weaponType,carCool"
     }
 
+    private val console: IOManager = IOManager()
+
     /**
      * Читает коллекцию из CSV-файла с помощью [Scanner].
      *
@@ -45,12 +48,12 @@ class FileManager(private val filePath: String) {
         val file = File(filePath)
 
         if (!file.exists()) {
-            System.err.println("Файл '$filePath' не найден. Коллекция будет пустой.")
+            console.printErrConsole("Файл '$filePath' не найден. Коллекция будет пустой.")
             return emptyList()
         }
 
         if (!file.canRead()) {
-            System.err.println("Нет прав на чтение файла '$filePath'. Коллекция будет пустой.")
+            console.printErrConsole("Нет прав на чтение файла '$filePath'. Коллекция будет пустой.")
             return emptyList()
         }
 
@@ -69,14 +72,14 @@ class FileManager(private val filePath: String) {
 
                     parseLine(line, lineNumber)
                         ?.let { result.add(it) }
-                        ?: System.err.println("Строка $lineNumber пропущена: некорректные данные → '$line'")
+                        ?: console.printErrConsole("Строка $lineNumber пропущена: некорректные данные → '$line'")
                 }
             }
         } catch (e: FileNotFoundException) {
-            System.err.println("Файл не найден во время чтения: ${e.message}")
+            console.printErrConsole("Файл не найден во время чтения: ${e.message}")
         }
 
-        println("Загружено элементов: ${result.size} из файла '$filePath'")
+        console.print("Загружено элементов: ${result.size} из файла '$filePath'")
         return result
     }
 
@@ -91,7 +94,7 @@ class FileManager(private val filePath: String) {
         return try {
             val parts = line.split(DELIMITER, limit = 12)
             if (parts.size < 12) {
-                System.err.println("Строка $lineNumber: ожидалось 12 полей, найдено ${parts.size}")
+                console.printErrConsole("Строка $lineNumber: ожидалось 12 полей, найдено ${parts.size}")
                 return null
             }
 
@@ -122,13 +125,13 @@ class FileManager(private val filePath: String) {
                 minutesOfWaiting = minutesOfWaiting, weaponType = weaponType, car = Car(carCool)
             )
         } catch (e: IllegalArgumentException) {
-            System.err.println("Строка $lineNumber — ошибка данных: ${e.message}")
+            console.printErrConsole("Строка $lineNumber — ошибка данных: ${e.message}")
             null
         } catch (e: DateTimeParseException) {
-            System.err.println("Строка $lineNumber — неверный формат даты: ${e.message}")
+            console.printErrConsole("Строка $lineNumber — неверный формат даты: ${e.message}")
             null
         } catch (e: Exception) {
-            System.err.println("Строка $lineNumber — неожиданная ошибка: ${e.message}")
+            console.printErrConsole("Строка $lineNumber — неожиданная ошибка: ${e.message}")
             null
         }
     }
@@ -143,7 +146,7 @@ class FileManager(private val filePath: String) {
         val file = File(filePath)
 
         if (file.exists() && !file.canWrite()) {
-            System.err.println("Нет прав на запись в файл '$filePath'.")
+            console.printErrConsole("Нет прав на запись в файл '$filePath'.")
             return false
         }
 
@@ -156,13 +159,13 @@ class FileManager(private val filePath: String) {
                     writer.write("\n")
                 }
             }
-            println("Коллекция сохранена в '$filePath' (${items.size} элементов).")
+            console.print("Коллекция сохранена в '$filePath' (${items.size} элементов).")
             true
         } catch (e: SecurityException) {
-            System.err.println("Отказано в доступе к файлу '$filePath': ${e.message}")
+            console.printErrConsole("Отказано в доступе к файлу '$filePath': ${e.message}")
             false
         } catch (e: Exception) {
-            System.err.println("Ошибка записи в файл: ${e.message}")
+            console.printErrConsole("Ошибка записи в файл: ${e.message}")
             false
         }
     }

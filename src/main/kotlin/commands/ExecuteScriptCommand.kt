@@ -1,5 +1,6 @@
 package commands
 
+import input.InputManager
 import runner.CommandInvoker
 import runner.CommandQueue
 
@@ -12,36 +13,42 @@ import runner.CommandQueue
  *
  * Такой подход гарантирует, что все файлы прочитаны до начала выполнения.
  */
-class ExecuteScriptCommand(private val invoker: CommandInvoker) : Command {
+class ExecuteScriptCommand(
+    private val invoker: CommandInvoker,
+    private val console: InputManager
+) : Command {
     override val name = "execute_script"
     override val description = "выполнить скрипт из файла: execute_script <file>"
 
     override fun execute(args: List<String>) {
         if (args.isEmpty()) {
-            println("[Ошибка] Укажите путь к файлу. Пример: execute_script script.txt")
+            console.print("[Ошибка] Укажите путь к файлу. Пример: execute_script script.txt")
             return
         }
 
         val filePath = args[0]
 
         // я манал это всё
-        println("Чтение скрипта '$filePath'...")
+        console.print("Чтение скрипта '$filePath'...")
+
+        // inputmanager добавить источник, Scanner file
         val queue = CommandQueue()
         queue.loadFromScript(filePath)
 
         if (queue.isEmpty()) {
-            println("Текст Скриптонита пустой или не найден.")
+            console.print("Текст Скриптонита пустой или не найден.")
             return
         }
 
-        println("Прочитано команд: ${queue.size()}. Начинаем выполнение...")
+        console.print("Прочитано команд: ${queue.size()}. Начинаем выполнение...")
 
+        // это уже есть
         while (!queue.isEmpty()) {
             val line = queue.dequeue() ?: break
-            println("  [скриптонит] > $line")
+            console.print("  [скриптонит] > $line")
             invoker.execute(line)
         }
 
-        println("Скриптонит зачитал '$filePath'.")
+        console.print("Скриптонит зачитал '$filePath'.")
     }
 }

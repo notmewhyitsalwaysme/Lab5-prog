@@ -20,9 +20,9 @@ class AddIfMinCommand(
         val min   = manager.getMin()
         if (min == null || human < min) {
             manager.add(human)
-            println("Элемент добавлен (меньше минимума).")
+            inputManager.print("Элемент добавлен (меньше минимума).")
         } else {
-            println("Элемент не добавлен: не меньше текущего минимума (${min.name}).")
+            inputManager.print("Элемент не добавлен: не меньше текущего минимума (${min.name}).")
         }
     }
 }

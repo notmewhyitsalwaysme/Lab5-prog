@@ -10,7 +10,7 @@ import file.FileManager
  */
 class SaveCommand(
     private val manager: CollectionManager,
-    private val fileManager: FileManager
+    private val fileManager: FileManager,
 ) : Command {
     override val name = "save"
     override val description = "сохранить коллекцию в файл"

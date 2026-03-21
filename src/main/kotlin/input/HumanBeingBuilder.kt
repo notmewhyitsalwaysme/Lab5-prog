@@ -18,6 +18,8 @@ import models.WeaponType
  */
 class HumanBeingBuilder(private val inputManager: InputManager) {
 
+    private val console = IOManager()
+
     /**
      * Запускает интерактивный ввод всех полей и возвращает готовый [HumanBeing].
      *
@@ -62,7 +64,7 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
             val input = inputManager.readLine()
                 ?: throw IllegalStateException("EOF")
             if (input.isNotBlank()) return input.trim()
-            println("[Ошибка] Строка не может быть пустой.")
+            console.print("[Ошибка] Строка не может быть пустой.")
         }
     }
 
@@ -77,7 +79,7 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
             try {
                 return input.trim().toLong()
             } catch (e: NumberFormatException) {
-                println("[Ошибка] Ожидается целое число (Long). Попробуйте снова.")
+                console.print("[Ошибка] Ожидается целое число (Long). Попробуйте снова.")
             }
         }
     }
@@ -93,7 +95,7 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
             try {
                 return input.trim().toInt()
             } catch (e: NumberFormatException) {
-                println("[Ошибка] Ожидается целое число (Int). Попробуйте снова.")
+                console.print("[Ошибка] Ожидается целое число (Int). Попробуйте снова.")
             }
         }
     }
@@ -109,7 +111,7 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
             try {
                 return input.trim().toDouble()
             } catch (e: NumberFormatException) {
-                println("[Ошибка] Ожидается число с плавающей точкой (Double). Попробуйте снова.")
+                console.print("[Ошибка] Ожидается число с плавающей точкой (Double). Попробуйте снова.")
             }
         }
     }
@@ -125,7 +127,7 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
             try {
                 return input.trim().toFloat()
             } catch (e: NumberFormatException) {
-                println("[Ошибка] Ожидается число (Float). Попробуйте снова.")
+                console.print("[Ошибка] Ожидается число (Float). Попробуйте снова.")
             }
         }
     }
@@ -141,7 +143,7 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
             when (input.trim().lowercase()) {
                 "true"  -> return true
                 "false" -> return false
-                else    -> println("[Ошибка] Ожидается 'true' или 'false'. Попробуйте снова.")
+                else    -> console.print("[Ошибка] Ожидается 'true' или 'false'. Попробуйте снова.")
             }
         }
     }
@@ -160,7 +162,7 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
             try {
                 return WeaponType.valueOf(input.trim().uppercase())
             } catch (e: IllegalArgumentException) {
-                println("[Ошибка] Неизвестный тип оружия '$input'. Допустимые значения: $constants")
+                console.print("[Ошибка] Неизвестный тип оружия '$input'. Допустимые значения: $constants")
             }
         }
     }
@@ -170,6 +172,6 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
      * В режиме скрипта приглашения не выводятся.
      */
     private fun printPrompt(message: String) {
-        if (inputManager.isInteractive) print(" > $message ")
+        if (inputManager.isInteractive) console.print(" > $message ")
     }
 }

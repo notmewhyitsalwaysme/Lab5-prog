@@ -4,6 +4,10 @@ package commands
  * Базовый интерфейс для всех команд приложения.
  */
 interface Command {
+
+    // добавить перменную для
+
+
     /** Имя команды. */
     val name: String
 

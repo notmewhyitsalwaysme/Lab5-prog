@@ -2,6 +2,7 @@ package runner
 
 import java.io.File
 import java.util.Scanner
+import input.IOManager
 
 /**
  * Очередь команд, собранных из файла-скрипта.
@@ -18,6 +19,7 @@ class CommandQueue {
         private const val EXECUTE_SCRIPT_CMD = "execute_script"
     }
 
+    private val console = IOManager()
     private val queue = ArrayDeque<String>()
 
     /** Количество команд в очереди. */
@@ -41,17 +43,17 @@ class CommandQueue {
     ) {
         // Защита от рекурсии
         if (filePath in visitedScripts) {
-            println("[CommandQueue] Рекурсия обнаружена: '$filePath' уже в стеке, пропускаем.")
+            console.print("[CommandQueue] Рекурсия обнаружена: '$filePath' уже в стеке, пропускаем.")
             return
         }
 
         val file = File(filePath)
         if (!file.exists()) {
-            println("[CommandQueue] Файл не найден: '$filePath'")
+            console.print("[CommandQueue] Файл не найден: '$filePath'")
             return
         }
         if (!file.canRead()) {
-            println("[CommandQueue] Нет прав на чтение: '$filePath'")
+            console.print("[CommandQueue] Нет прав на чтение: '$filePath'")
             return
         }
 
@@ -70,7 +72,7 @@ class CommandQueue {
                     if (parts[0].lowercase() == EXECUTE_SCRIPT_CMD && parts.size > 1) {
                         val nestedPath = File(parentDir, parts[1]).path
                         if (!File(nestedPath).exists()) {
-                            println("[CommandQueue] Файл не найден: '$nestedPath'")
+                            console.print("[CommandQueue] Файл не найден: '$nestedPath'")
                             return
                         }
                         loadFromScript(nestedPath, visitedScripts)

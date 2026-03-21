@@ -3,7 +3,6 @@ package input
 import org.jline.reader.EndOfFileException
 import org.jline.reader.LineReaderBuilder
 import org.jline.reader.UserInterruptException
-import org.jline.reader.impl.completer.StringsCompleter
 import org.jline.terminal.TerminalBuilder
 
 /**
@@ -11,8 +10,13 @@ import org.jline.terminal.TerminalBuilder
  * Поддерживает историю команд (стрелки ↑↓), Tab-автодополнение,
  * корректную обработку Ctrl+C и Ctrl+D.
  */
-class ConsoleInputManager() : InputManager {
+class IOManager() : InputManager {
     override val isInteractive = true
+
+    // сделать основной Scanner
+    // при инициализации стандартный сканер добавляется
+    // стек input, один (console) открыт постоянно
+    // если файл - в стек кидается Scanner
 
     private val terminal = TerminalBuilder.builder()
         .system(true)
@@ -36,6 +40,16 @@ class ConsoleInputManager() : InputManager {
             null   // Ctrl+C
         }
     }
+
+    override fun print(text: String) {
+        println(text)
+    }
+
+    override fun printErrConsole(text: String) {
+        System.err.println(text)
+    }
+
+
 }
 
 

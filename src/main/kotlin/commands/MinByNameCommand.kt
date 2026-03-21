@@ -1,17 +1,21 @@
 package commands
 
 import collection.CollectionManager
+import input.IOManager
 
 /**
  * Выводит любой элемент с минимальным значением поля [models.HumanBeing.name].
  */
-class MinByNameCommand(private val manager: CollectionManager) : Command {
+class MinByNameCommand(
+    private val manager: CollectionManager,
+    private val console: IOManager
+) : Command {
     override val name = "min_by_name"
     override val description = "вывести элемент с минимальным именем"
 
     override fun execute(args: List<String>) {
         val min = manager.minByName()
-        if (min == null) println("Коллекция пуста.")
-        else println(min)
+        if (min == null) console.print("Коллекция пуста.")
+        else console.print(min.toString())
     }
 }

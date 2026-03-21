@@ -1,1 +1,3 @@
-2026-03-19 12:49:46.830 [main] INFO  collection.CollectionManager - [COMMANDS] {LOAD_FROM_FILE} Загрузка коллекции из файла
+2026-03-21 17:02:01.121 [main] INFO  collection.CollectionManager - [COMMANDS] {IS_EMPTY} Проверка наличия элементов в коллекции
+2026-03-21 17:02:01.123 [main] INFO  collection.CollectionManager - [COMMANDS] {GET_ALL} Возвращена коллекция
+2026-03-21 17:02:06.184 [main] INFO  collection.CollectionManager - [COMMANDS] {GET_ALL} Возвращена коллекция

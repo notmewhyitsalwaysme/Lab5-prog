@@ -12,28 +12,28 @@ import java.util.UUID
  */
 class UpdateCommand(
     private val manager: CollectionManager,
-    private val inputManager: InputManager
+    private val inputManager: InputManager,
 ) : Command {
     override val name = "update"
     override val description = "обновить элемент по id: update <uuid>"
 
     override fun execute(args: List<String>) {
         if (args.isEmpty()) {
-            println("[Ошибка] Укажите id элемента. Пример: update <uuid>")
+            inputManager.print("[Ошибка] Укажите id элемента. Пример: update <uuid>")
             return
         }
         val id = try {
             UUID.fromString(args[0])
         } catch (e: IllegalArgumentException) {
-            println("[Ошибка] Некорректный UUID: '${args[0]}'")
+            inputManager.print("[Ошибка] Некорректный UUID: '${args[0]}'")
             return
         }
         if (manager.getById(id) == null) {
-            println("[Ошибка] Элемент с id '$id' не найден.")
+            inputManager.print("[Ошибка] Элемент с id '$id' не найден.")
             return
         }
         val updated = HumanBeingBuilder(inputManager).build()
         manager.update(id, updated)
-        println("Элемент обновлён.")
+        inputManager.print("Элемент обновлён.")
     }
 }

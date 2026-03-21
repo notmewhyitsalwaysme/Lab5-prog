@@ -1,7 +1,7 @@
 import collection.CollectionManager
 import commands.*
 import file.FileManager
-import input.ConsoleInputManager
+import input.IOManager
 import input.InputManager
 import runner.CommandInvoker
 
@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
     val fileManager = FileManager(filePath)
     val manager = CollectionManager()
     val invoker = CommandInvoker()
-    val inputManager = ConsoleInputManager()
+    val inputManager = IOManager()
 
     // Загружаем данные из файла
     val loaded = fileManager.read()
@@ -34,7 +34,7 @@ fun main(args: Array<String>) {
     registerCommands(invoker, manager, fileManager, inputManager)
 
     // Водила, стартуем. Я сказала стартуем!
-    println("Коллекция загружена. Введите 'help' для справки.")
+    inputManager.print("Коллекция загружена. Введите 'help' для справки.")
     runRepl(inputManager, invoker)
 }
 
@@ -47,19 +47,19 @@ fun main(args: Array<String>) {
  * @param inputManager источник ввода
  * @param invoker инвокер команд
  */
-fun runRepl(inputManager: InputManager, invoker: CommandInvoker) {
-    var isRunning = true
+fun runRepl(
+    inputManager: InputManager,
+    invoker: CommandInvoker
+    ) {
 
-    // exitProcess мне нравился больше
-    invoker.register(ExitCommand { isRunning = false })
-
-    while (isRunning) {
+    while (true) {
         val line = inputManager.readLine() ?: break
         if (line.isBlank()) continue
+        if (line == "exit") break
+
+        // if command.isTerminating -> break
         invoker.execute(line)
     }
-
-    println("\nНу ладно.")
 }
 
 /**
@@ -74,25 +74,27 @@ fun registerCommands(
     invoker: CommandInvoker,
     manager: CollectionManager,
     fileManager: FileManager,
-    inputManager: InputManager
-) {
+    inputManager: IOManager,
+
+    ) {
     val activeScripts = mutableSetOf<String>()
 
     listOf(
-        HelpCommand(invoker),
-        InfoCommand(manager),
-        ShowCommand(manager),
+        HelpCommand(invoker, inputManager),
+        InfoCommand(manager, inputManager),
+        ShowCommand(manager, inputManager),
         AddCommand(manager, inputManager),
         UpdateCommand(manager, inputManager),
-        RemoveByIdCommand(manager),
-        ClearCommand(manager),
+        RemoveByIdCommand(manager, inputManager),
+        ClearCommand(manager, inputManager),
         SaveCommand(manager, fileManager),
-        ExecuteScriptCommand(invoker),
+        ExecuteScriptCommand(invoker, inputManager),
         AddIfMaxCommand(manager, inputManager),
         AddIfMinCommand(manager, inputManager),
-        HistoryCommand(invoker),
-        SumOfMinutesCommand(manager),
-        MinByNameCommand(manager),
-        PrintDescendingMinutesCommand(manager)
+        HistoryCommand(invoker, inputManager),
+        SumOfMinutesCommand(manager, inputManager),
+        MinByNameCommand(manager, inputManager),
+        PrintDescendingMinutesCommand(manager,inputManager),
+        ExitCommand(inputManager)
     ).forEach { invoker.register(it) }
 }

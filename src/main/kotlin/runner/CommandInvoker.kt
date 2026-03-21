@@ -1,6 +1,7 @@
 package runner
 
 import commands.Command
+import input.IOManager
 
 /**
  * Инвокер команд.
@@ -12,6 +13,7 @@ import commands.Command
  */
 class CommandInvoker {
 
+    private val console = IOManager()
     private val commands = mutableMapOf<String, Command>()
     private val history  = ArrayDeque<String>(12)
 
@@ -36,7 +38,7 @@ class CommandInvoker {
 
         val command = commands[name]
         if (command == null) {
-            println("Неизвестная команда: '$name'. Введите 'help' для справки.")
+            console.print("Неизвестная команда: '$name'. Введите 'help' для справки.")
             return
         }
 
@@ -44,7 +46,7 @@ class CommandInvoker {
         try {
             command.execute(args)
         } catch (e: IllegalStateException) {
-            println("[Ошибка выполнения] ${e.message}")
+            console.print("[Ошибка выполнения] ${e.message}")
         }
     }
 

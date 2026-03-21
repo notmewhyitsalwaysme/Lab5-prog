@@ -3,6 +3,8 @@ package input
 import java.io.File
 import java.util.Scanner
 
+// удалить
+
 /**
  * Реализация [InputManager] для чтения команд из файла.
  *
@@ -18,4 +20,7 @@ class ScriptInputManager(filePath: String) : InputManager {
 
     override fun readLine(): String? =
         if (scanner.hasNextLine()) scanner.nextLine() else null
+
+    override fun print(text: String) {}
+    override fun printErrConsole(text: String) {}
 }

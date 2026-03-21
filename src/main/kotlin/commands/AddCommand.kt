@@ -10,14 +10,14 @@ import input.InputManager
  */
 class AddCommand(
     private val manager: CollectionManager,
-    private val inputManager: InputManager
+    private val inputManager: InputManager,
 ) : Command {
     override val name = "add"
     override val description = "добавить новый элемент в коллекцию"
 
     override fun execute(args: List<String>) {
         val human = HumanBeingBuilder(inputManager).build()
-        if (manager.add(human)) println("Элемент добавлен: ${human.name} [${human.id}]")
-        else println("Элемент уже существует в коллекции.")
+        if (manager.add(human)) inputManager.print("Элемент добавлен: ${human.name} [${human.id}]")
+        else inputManager.print("Элемент уже существует в коллекции.")
     }
 }

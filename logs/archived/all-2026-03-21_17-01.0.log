@@ -1,0 +1,2 @@
+2026-03-21 17:01:12.386 [main] INFO  collection.CollectionManager - [COMMANDS] {LOAD_FROM_FILE} Загрузка коллекции из файла
+2026-03-21 17:01:41.373 [main] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент ffe02d33-50c7-4d3d-aadc-9e524a35b8a6

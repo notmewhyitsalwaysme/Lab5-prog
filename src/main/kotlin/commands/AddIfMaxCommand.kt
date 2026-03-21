@@ -10,7 +10,7 @@ import input.InputManager
  */
 class AddIfMaxCommand(
     private val manager: CollectionManager,
-    private val inputManager: InputManager
+    private val inputManager: InputManager,
 ) : Command {
     override val name = "add_if_max"
     override val description = "добавить элемент, если он больше максимального"
@@ -20,9 +20,9 @@ class AddIfMaxCommand(
         val max   = manager.getMax()
         if (max == null || human > max) {
             manager.add(human)
-            println("Элемент добавлен (превышает максимум).")
+            inputManager.print("Элемент добавлен (превышает максимум).")
         } else {
-            println("Элемент не добавлен: не превышает текущий максимум (${max.name}).")
+            inputManager.print("Элемент не добавлен: не превышает текущий максимум (${max.name}).")
         }
     }
 }

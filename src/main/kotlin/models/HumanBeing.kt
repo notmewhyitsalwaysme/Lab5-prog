@@ -56,7 +56,7 @@ data class HumanBeing(
 
     override fun hashCode(): Int = id.hashCode()
 
-    // убил на этот вывод часа 5-6. Зря я сюда полез
+    // Зря я сюда полез
     /**
      * Красивое строковое представление для команды [show].
      */
