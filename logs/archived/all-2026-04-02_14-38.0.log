@@ -1,0 +1,2 @@
+2026-04-02 14:38:10.504 [main] INFO  collection.CollectionManager - [COMMANDS] {LOAD_FROM_FILE} Загрузка коллекции из файла
+2026-04-02 14:38:24.265 [main] INFO  collection.CollectionManager - [COMMANDS] {GET_INFO} Получение информации о коллекции

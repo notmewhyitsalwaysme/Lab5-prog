@@ -2,7 +2,7 @@ package commands
 
 import collection.CollectionManager
 import input.HumanBeingBuilder
-import input.InputManager
+import input.IOManager
 
 /**
  * Добавляет элемент в коллекцию, если он меньше наименьшего элемента.
@@ -10,7 +10,7 @@ import input.InputManager
  */
 class AddIfMinCommand(
     private val manager: CollectionManager,
-    private val inputManager: InputManager
+    private val inputManager: IOManager
 ) : Command {
     override val name = "add_if_min"
     override val description = "добавить элемент, если он меньше минимального"

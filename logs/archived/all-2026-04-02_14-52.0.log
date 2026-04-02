@@ -1,0 +1,81 @@
+2026-04-02 14:52:34.234 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент 4b27d8dc-0bb9-4301-a04e-7cf21c97a0f8
+2026-04-02 14:52:34.239 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {SIZE} Получен размер коллекции
+2026-04-02 14:52:34.243 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент a370bb0a-63b9-40e1-b334-0045c0206a41
+2026-04-02 14:52:34.243 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {GET_BY_ID} поиск элемента по id: a370bb0a-63b9-40e1-b334-0045c0206a41
+2026-04-02 14:52:34.243 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {REMOVE_BY_ID} Удалён элемент a370bb0a-63b9-40e1-b334-0045c0206a41 от 2026-04-02
+2026-04-02 14:52:34.243 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {SIZE} Получен размер коллекции
+2026-04-02 14:52:34.243 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {GET_BY_ID} поиск элемента по id: a370bb0a-63b9-40e1-b334-0045c0206a41
+2026-04-02 14:52:34.481 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#1
+2026-04-02 14:52:34.745 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #1#2
+2026-04-02 14:52:34.746 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd1 on Command(#1).getName()
+2026-04-02 14:52:34.746 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#3
+2026-04-02 14:52:34.747 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #3#4
+2026-04-02 14:52:34.747 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd2 on Command(#3).getName()
+2026-04-02 14:52:34.747 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#5
+2026-04-02 14:52:34.747 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #5#6
+2026-04-02 14:52:34.747 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd3 on Command(#5).getName()
+2026-04-02 14:52:34.747 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#7
+2026-04-02 14:52:34.748 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #7#8
+2026-04-02 14:52:34.748 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd4 on Command(#7).getName()
+2026-04-02 14:52:34.748 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#9
+2026-04-02 14:52:34.749 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #9#10
+2026-04-02 14:52:34.749 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd5 on Command(#9).getName()
+2026-04-02 14:52:34.749 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#11
+2026-04-02 14:52:34.749 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #11#12
+2026-04-02 14:52:34.749 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd6 on Command(#11).getName()
+2026-04-02 14:52:34.749 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#13
+2026-04-02 14:52:34.750 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #13#14
+2026-04-02 14:52:34.750 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd7 on Command(#13).getName()
+2026-04-02 14:52:34.750 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#15
+2026-04-02 14:52:34.750 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #15#16
+2026-04-02 14:52:34.751 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd8 on Command(#15).getName()
+2026-04-02 14:52:34.751 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#17
+2026-04-02 14:52:34.751 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #17#18
+2026-04-02 14:52:34.751 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd9 on Command(#17).getName()
+2026-04-02 14:52:34.751 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#19
+2026-04-02 14:52:34.752 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #19#20
+2026-04-02 14:52:34.752 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd10 on Command(#19).getName()
+2026-04-02 14:52:34.752 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#21
+2026-04-02 14:52:34.752 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #21#22
+2026-04-02 14:52:34.753 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd11 on Command(#21).getName()
+2026-04-02 14:52:34.753 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#23
+2026-04-02 14:52:34.753 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #23#24
+2026-04-02 14:52:34.753 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd12 on Command(#23).getName()
+2026-04-02 14:52:34.753 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#25
+2026-04-02 14:52:34.754 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #25#26
+2026-04-02 14:52:34.754 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd13 on Command(#25).getName()
+2026-04-02 14:52:34.754 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#27
+2026-04-02 14:52:34.754 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #27#28
+2026-04-02 14:52:34.754 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd14 on Command(#27).getName()
+2026-04-02 14:52:34.754 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Command name=#29
+2026-04-02 14:52:34.755 [Test worker] DEBUG i.m.i.i.AbstractMockFactory - Creating mockk for Unit name=child of #29#30
+2026-04-02 14:52:34.755 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering cmd15 on Command(#29).getName()
+2026-04-02 14:52:34.755 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#1).execute([])
+2026-04-02 14:52:34.755 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#3).execute([])
+2026-04-02 14:52:34.755 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#5).execute([])
+2026-04-02 14:52:34.755 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#7).execute([])
+2026-04-02 14:52:34.755 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#9).execute([])
+2026-04-02 14:52:34.755 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#11).execute([])
+2026-04-02 14:52:34.756 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#13).execute([])
+2026-04-02 14:52:34.756 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#15).execute([])
+2026-04-02 14:52:34.756 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#17).execute([])
+2026-04-02 14:52:34.756 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#19).execute([])
+2026-04-02 14:52:34.756 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#21).execute([])
+2026-04-02 14:52:34.756 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#23).execute([])
+2026-04-02 14:52:34.756 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#25).execute([])
+2026-04-02 14:52:34.756 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#27).execute([])
+2026-04-02 14:52:34.756 [Test worker] DEBUG i.m.i.r.states.AnsweringState - Answering kotlin.Unit on Command(#29).execute([])
+2026-04-02 14:52:34.762 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент c59d0ec1-f645-4a83-87b0-cfac26d5fa02
+2026-04-02 14:52:34.762 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент e12705d2-c00f-40d4-92de-6fe927682321
+2026-04-02 14:52:34.762 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент cb7d0fb2-f8ca-4805-b697-508709b84825
+2026-04-02 14:52:34.762 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {MIN_BY_NAME} Получение минимального элемента коллекции по имени
+2026-04-02 14:52:34.764 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент 7bf68ceb-015f-422e-b524-2c1bab2d2fc4
+2026-04-02 14:52:34.764 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент 01426ba6-1a76-4424-9da3-b66f6ecd36a2
+2026-04-02 14:52:34.764 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент 58f2d29c-548c-4e49-8ba1-f9a256dc2de9
+2026-04-02 14:52:34.764 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {GET_MIN_WAIT_DESC} Получение списка элементов коллекции по времени ожидания
+2026-04-02 14:52:34.766 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент a14eb209-966b-4689-bc73-45511482da23
+2026-04-02 14:52:34.766 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент 0c71f2e7-6613-436b-9978-915b9304879d
+2026-04-02 14:52:34.766 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {ADD} Создан элемент 171b03fd-41c7-4241-96fa-9d04213b5602
+2026-04-02 14:52:34.766 [Test worker] INFO  collection.CollectionManager - [COMMANDS] {SUM_MIN_WAIT} Получение минимального элемента коллекции по времени ожидания
+2026-04-02 14:52:37.985 [main] INFO  collection.CollectionManager - [COMMANDS] {LOAD_FROM_FILE} Загрузка коллекции из файла
+2026-04-02 14:52:48.681 [main] INFO  collection.CollectionManager - [COMMANDS] {GET_INFO} Получение информации о коллекции

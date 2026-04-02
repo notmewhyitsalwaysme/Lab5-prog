@@ -1,55 +1,80 @@
 package input
 
 import org.jline.reader.EndOfFileException
-import org.jline.reader.LineReaderBuilder
-import org.jline.reader.UserInterruptException
-import org.jline.terminal.TerminalBuilder
+import java.io.File
+import java.io.FileNotFoundException
+import java.util.ArrayDeque
+import java.util.Scanner
 
 /**
- * Реализация [InputManager] для чтения из стандартного потока ввода на основе JLine3.
- * Поддерживает историю команд (стрелки ↑↓), Tab-автодополнение,
- * корректную обработку Ctrl+C и Ctrl+D.
+ * Реализация [input.IOManager] для чтения потока ввода/файла.
+ * Поддерживает корректную обработку Ctrl+C и Ctrl+D.
  */
-class IOManager() : InputManager {
-    override val isInteractive = true
+class IOManager() {
+    val isInteractive = true
+    val inputQueue = ArrayDeque<Scanner>()
+    val fileHistory = ArrayDeque<String>()
+
+    init {
+        inputQueue.push(Scanner(System.`in`))
+    }
+
+    fun addScriptScanner(filePath: String) {
+        if (fileHistory.contains(filePath)) {
+            printErrConsole("Скрипт уже был выполнен: $filePath")
+            return
+        }
+
+        try {
+            fileHistory.push(filePath)
+            inputQueue.push(Scanner(File(filePath), Charsets.UTF_8))
+        } catch (e: FileNotFoundException) {
+            printErrConsole("Файл не найден: $filePath")
+        }
+    }
 
     // сделать основной Scanner
     // при инициализации стандартный сканер добавляется
     // стек input, один (console) открыт постоянно
     // если файл - в стек кидается Scanner
 
-    private val terminal = TerminalBuilder.builder()
-        .system(true)
-        .build()
-
-    private val reader = LineReaderBuilder.builder()
-        .terminal(terminal)
-        .variable("history-size", 100)
-        .build()
-
     /**
      * Читает строку с промптом ☭.
      * Возвращает null при Ctrl+D (EOF) или Ctrl+C.
      */
-    override fun readLine(): String? {
-        return try {
-            reader.readLine("\n ☭ ")
-        } catch (e: EndOfFileException) {
-            null   // Ctrl+D
-        } catch (e: UserInterruptException) {
-            null   // Ctrl+C
+    fun readLine(prompt: String): String? {
+        while (inputQueue.isNotEmpty()) {
+            if (inputQueue.size == 1) kotlin.io.print(prompt)
+             // при выполнении скрипта три раза выводится
+            val topInDeque = inputQueue.peek()
+            if (topInDeque.hasNextLine()) {
+
+                return topInDeque.nextLine().toString()
+            }
+            if (inputQueue.size > 1) {
+                topInDeque.close()
+                inputQueue.pop()
+                fileHistory.pop()
+
+                // snap back to reality
+                continue
+            }
+            inputQueue.pop()
+            print("Ввод закончен.")
+            break
         }
+        return null
     }
 
-    override fun print(text: String) {
-        println(text)
+        fun print(text: String) {
+            println(text)
+        }
+
+        fun printErrConsole(text: String) {
+            System.err.println(text)
+        }
+
+
     }
-
-    override fun printErrConsole(text: String) {
-        System.err.println(text)
-    }
-
-
-}
 
 

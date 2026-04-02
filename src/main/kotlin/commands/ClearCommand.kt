@@ -1,7 +1,7 @@
 package commands
 
 import collection.CollectionManager
-import input.InputManager
+import input.IOManager
 
 /**
  * Очищает коллекцию.
@@ -9,13 +9,13 @@ import input.InputManager
  */
 class ClearCommand(
     private val manager: CollectionManager,
-    private val console: InputManager
+    private val inputManager: IOManager
 ) : Command {
     override val name = "clear"
     override val description = "очистить коллекцию"
 
     override fun execute(args: List<String>) {
         manager.clear()
-        console.print("Коллекция очищена.")
+        inputManager.print("Коллекция очищена.")
     }
 }

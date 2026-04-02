@@ -2,7 +2,7 @@ package commands
 
 import collection.CollectionManager
 import input.HumanBeingBuilder
-import input.InputManager
+import input.IOManager
 
 /**
  * Добавляет новый элемент в коллекцию.
@@ -10,7 +10,7 @@ import input.InputManager
  */
 class AddCommand(
     private val manager: CollectionManager,
-    private val inputManager: InputManager,
+    private val inputManager: IOManager,
 ) : Command {
     override val name = "add"
     override val description = "добавить новый элемент в коллекцию"

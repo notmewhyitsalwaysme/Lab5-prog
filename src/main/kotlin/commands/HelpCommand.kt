@@ -1,6 +1,6 @@
 package commands
 
-import input.InputManager
+import input.IOManager
 import runner.CommandInvoker
 
 /**
@@ -9,7 +9,7 @@ import runner.CommandInvoker
  */
 class HelpCommand(
     private val invoker: CommandInvoker,
-    private val console: InputManager
+    private val inputManager: IOManager
 ) : Command {
     override val name = "help"
     override val description = "вывести справку по доступным командам"
@@ -17,6 +17,6 @@ class HelpCommand(
     override fun execute(args: List<String>) {
         invoker.getCommands().values
             .sortedBy { it.name }
-            .forEach { console.print("  ${it.name.padEnd(40)} — ${it.description}") }
+            .forEach { inputManager.print("  ${it.name.padEnd(40)} — ${it.description}") }
     }
 }

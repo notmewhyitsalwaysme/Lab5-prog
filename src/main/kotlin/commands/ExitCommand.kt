@@ -1,17 +1,17 @@
 package commands
 
-import input.InputManager
+import input.IOManager
 
 /**
  * Завершает программу без сохранения. Теперь это Callback
  */
 class ExitCommand(
-    private val console: InputManager,
+    private val inputManager: IOManager,
 ) : Command {
     override val name = "exit"
     override val description = "завершить программу"
 
     override fun execute(args: List<String>) {
-        console.print("До свидания!")
+        inputManager.print("До свидания!")
     }
 }

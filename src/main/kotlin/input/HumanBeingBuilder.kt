@@ -16,9 +16,7 @@ import models.WeaponType
  *
  * @property inputManager источник ввода
  */
-class HumanBeingBuilder(private val inputManager: InputManager) {
-
-    private val console = IOManager()
+class HumanBeingBuilder(private val inputManager: IOManager) {
 
     /**
      * Запускает интерактивный ввод всех полей и возвращает готовый [HumanBeing].
@@ -60,11 +58,10 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
      */
     private fun readNonBlankString(prompt: String): String {
         while (true) {
-            printPrompt(prompt)
-            val input = inputManager.readLine()
+            val input = inputManager.readLine(" > $prompt")
                 ?: throw IllegalStateException("EOF")
             if (input.isNotBlank()) return input.trim()
-            console.print("[Ошибка] Строка не может быть пустой.")
+            inputManager.print("[Ошибка] Строка не может быть пустой.")
         }
     }
 
@@ -73,13 +70,12 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
      */
     private fun readLong(prompt: String): Long {
         while (true) {
-            printPrompt(prompt)
-            val input = inputManager.readLine()
+            val input = inputManager.readLine(" > $prompt")
                 ?: throw IllegalStateException("EOF")
             try {
                 return input.trim().toLong()
             } catch (e: NumberFormatException) {
-                console.print("[Ошибка] Ожидается целое число (Long). Попробуйте снова.")
+                inputManager.print("[Ошибка] Ожидается целое число (Long). Попробуйте снова.")
             }
         }
     }
@@ -89,13 +85,12 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
      */
     private fun readInt(prompt: String): Int {
         while (true) {
-            printPrompt(prompt)
-            val input = inputManager.readLine()
+            val input = inputManager.readLine(" > $prompt")
                 ?: throw IllegalStateException("EOF")
             try {
                 return input.trim().toInt()
             } catch (e: NumberFormatException) {
-                console.print("[Ошибка] Ожидается целое число (Int). Попробуйте снова.")
+                inputManager.print("[Ошибка] Ожидается целое число (Int). Попробуйте снова.")
             }
         }
     }
@@ -105,13 +100,12 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
      */
     private fun readDouble(prompt: String): Double {
         while (true) {
-            printPrompt(prompt)
-            val input = inputManager.readLine()
+            val input = inputManager.readLine(" > $prompt")
                 ?: throw IllegalStateException("EOF")
             try {
                 return input.trim().toDouble()
             } catch (e: NumberFormatException) {
-                console.print("[Ошибка] Ожидается число с плавающей точкой (Double). Попробуйте снова.")
+                inputManager.print("[Ошибка] Ожидается число с плавающей точкой (Double). Попробуйте снова.")
             }
         }
     }
@@ -121,13 +115,12 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
      */
     private fun readFloat(prompt: String): Float {
         while (true) {
-            printPrompt(prompt)
-            val input = inputManager.readLine()
+            val input = inputManager.readLine(" > $prompt")
                 ?: throw IllegalStateException("EOF")
             try {
                 return input.trim().toFloat()
             } catch (e: NumberFormatException) {
-                console.print("[Ошибка] Ожидается число (Float). Попробуйте снова.")
+                inputManager.print("[Ошибка] Ожидается число (Float). Попробуйте снова.")
             }
         }
     }
@@ -137,13 +130,12 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
      */
     private fun readBoolean(prompt: String): Boolean {
         while (true) {
-            printPrompt(prompt)
-            val input = inputManager.readLine()
+            val input = inputManager.readLine(" > $prompt")
                 ?: throw IllegalStateException("EOF")
             when (input.trim().lowercase()) {
                 "true"  -> return true
                 "false" -> return false
-                else    -> console.print("[Ошибка] Ожидается 'true' или 'false'. Попробуйте снова.")
+                else    -> inputManager.print("[Ошибка] Ожидается 'true' или 'false'. Попробуйте снова.")
             }
         }
     }
@@ -155,14 +147,13 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
     private fun readNullableWeaponType(): WeaponType? {
         val constants = WeaponType.entries.joinToString(", ")
         while (true) {
-            printPrompt("Введите тип оружия (доступные: $constants) или оставьте пустым для null:")
-            val input = inputManager.readLine()
+            val input = inputManager.readLine(" > Введите тип оружия (доступные: $constants) или оставьте пустым для null:")
                 ?: throw IllegalStateException("EOF")
             if (input.isBlank()) return null
             try {
                 return WeaponType.valueOf(input.trim().uppercase())
             } catch (e: IllegalArgumentException) {
-                console.print("[Ошибка] Неизвестный тип оружия '$input'. Допустимые значения: $constants")
+                inputManager.print("[Ошибка] Неизвестный тип оружия '$input'. Допустимые значения: $constants")
             }
         }
     }
@@ -172,6 +163,6 @@ class HumanBeingBuilder(private val inputManager: InputManager) {
      * В режиме скрипта приглашения не выводятся.
      */
     private fun printPrompt(message: String) {
-        if (inputManager.isInteractive) console.print(" > $message ")
+        if (inputManager.isInteractive) inputManager.print(" > $message ")
     }
 }

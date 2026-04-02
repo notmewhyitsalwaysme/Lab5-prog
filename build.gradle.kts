@@ -41,7 +41,7 @@ tasks.test {
 }
 
 tasks.named<ShadowJar>("shadowJar") {
-    archiveBaseName.set("lab5")
+    archiveBaseName.set("lab5 - копия")
     archiveClassifier.set("")
     archiveVersion.set("1.0.0")
     manifest {

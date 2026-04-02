@@ -2,7 +2,6 @@ import collection.CollectionManager
 import commands.*
 import file.FileManager
 import input.IOManager
-import input.InputManager
 import runner.CommandInvoker
 
 /**
@@ -48,12 +47,12 @@ fun main(args: Array<String>) {
  * @param invoker инвокер команд
  */
 fun runRepl(
-    inputManager: InputManager,
+    inputManager: IOManager,
     invoker: CommandInvoker
     ) {
 
     while (true) {
-        val line = inputManager.readLine() ?: break
+        val line = inputManager.readLine(" ☭ ") ?: break
         if (line.isBlank()) continue
         if (line == "exit") break
 
@@ -77,8 +76,6 @@ fun registerCommands(
     inputManager: IOManager,
 
     ) {
-    val activeScripts = mutableSetOf<String>()
-
     listOf(
         HelpCommand(invoker, inputManager),
         InfoCommand(manager, inputManager),
@@ -88,7 +85,7 @@ fun registerCommands(
         RemoveByIdCommand(manager, inputManager),
         ClearCommand(manager, inputManager),
         SaveCommand(manager, fileManager),
-        ExecuteScriptCommand(invoker, inputManager),
+        ExecuteScriptCommand(inputManager),
         AddIfMaxCommand(manager, inputManager),
         AddIfMinCommand(manager, inputManager),
         HistoryCommand(invoker, inputManager),

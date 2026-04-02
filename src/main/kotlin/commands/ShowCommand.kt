@@ -1,7 +1,7 @@
 package commands
 
 import collection.CollectionManager
-import input.InputManager
+import input.IOManager
 
 /**
  * Выводит все элементы коллекции в строковом представлении.
@@ -9,16 +9,16 @@ import input.InputManager
  */
 class ShowCommand(
     private val manager: CollectionManager,
-    private val console: InputManager
+    private val inputManager: IOManager
 ) : Command {
     override val name = "show"
     override val description = "вывести все элементы коллекции"
 
     override fun execute(args: List<String>) {
         if (manager.isEmpty()) {
-            console.print("Коллекция пуста.")
+            inputManager.print("Коллекция пуста.")
             return
         }
-        manager.getAll().forEach { console.print(it.toString()) }
+        manager.getAll().forEach { inputManager.print(it.toString()) }
     }
 }

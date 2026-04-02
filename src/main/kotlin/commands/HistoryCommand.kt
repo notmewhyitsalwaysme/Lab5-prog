@@ -1,6 +1,6 @@
 package commands
 
-import input.InputManager
+import input.IOManager
 import runner.CommandInvoker
 
 /**
@@ -9,7 +9,7 @@ import runner.CommandInvoker
  */
 class HistoryCommand(
     private val invoker: CommandInvoker,
-    private val console: InputManager
+    private val inputManager: IOManager
 ) : Command {
     override val name = "history"
     override val description = "вывести последние 12 команд"
@@ -17,9 +17,9 @@ class HistoryCommand(
     override fun execute(args: List<String>) {
         val history = invoker.getHistory()
         if (history.isEmpty()) {
-            console.print("История пуста.")
+            inputManager.print("История пуста.")
             return
         }
-        history.forEachIndexed { i, cmd -> console.print("  ${i + 1}. $cmd") }
+        history.forEachIndexed { i, cmd -> inputManager.print("  ${i + 1}. $cmd") }
     }
 }

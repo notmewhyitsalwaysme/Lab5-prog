@@ -2,7 +2,7 @@ package commands
 
 import collection.CollectionManager
 import input.HumanBeingBuilder
-import input.InputManager
+import input.IOManager
 import java.util.UUID
 
 /**
@@ -12,7 +12,7 @@ import java.util.UUID
  */
 class UpdateCommand(
     private val manager: CollectionManager,
-    private val inputManager: InputManager,
+    private val inputManager: IOManager,
 ) : Command {
     override val name = "update"
     override val description = "обновить элемент по id: update <uuid>"
