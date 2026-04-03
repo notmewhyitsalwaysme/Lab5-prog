@@ -16,7 +16,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
-    implementation("ch.qos.logback:logback-classic:1.5.7")
+    implementation("ch.qos.logback:logback-classic:1.5.13")
     implementation("org.jline:jline:3.27.1")
 
     testImplementation(kotlin("test"))
@@ -28,7 +28,8 @@ dependencies {
 application {
     mainClass.set("MainKt")
     applicationDefaultJvmArgs = listOf(
-        "--enable-native-access=ALL-UNNAMED"
+        "--enable-native-access=ALL-UNNAMED",
+        "-Dslf4j.internal.verbosity=WARN"
     )
 }
 
@@ -53,7 +54,6 @@ tasks.named("build") {
     dependsOn("shadowJar")
 }
 
-// да, я ленивый
 tasks.withType<JavaExec> {
     jvmArgs("--enable-native-access=ALL-UNNAMED")
 }

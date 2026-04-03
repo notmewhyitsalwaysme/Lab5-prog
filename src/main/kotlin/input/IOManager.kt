@@ -40,12 +40,10 @@ class IOManager() {
 
     /**
      * Читает строку с промптом ☭.
-     * Возвращает null при Ctrl+D (EOF) или Ctrl+C.
      */
     fun readLine(prompt: String): String? {
         while (inputQueue.isNotEmpty()) {
             if (inputQueue.size == 1) kotlin.io.print(prompt)
-             // при выполнении скрипта три раза выводится
             val topInDeque = inputQueue.peek()
             if (topInDeque.hasNextLine()) {
 

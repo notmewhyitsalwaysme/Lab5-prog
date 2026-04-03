@@ -12,6 +12,8 @@ import runner.CommandInvoker
  *
  */
 fun main(args: Array<String>) {
+    System.setProperty("slf4j.internal.verbosity", "WARN")
+
     // Проверяем аргументы
     var filePath = "data.csv"
 

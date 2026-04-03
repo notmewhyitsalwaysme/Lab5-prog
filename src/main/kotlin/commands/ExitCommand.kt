@@ -12,6 +12,6 @@ class ExitCommand(
     override val description = "завершить программу"
 
     override fun execute(args: List<String>) {
-        inputManager.print("До свидания!")
+        null
     }
 }
